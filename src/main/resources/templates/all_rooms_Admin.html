@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel App</title>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+
+</head>
+<body>
+
+<div class="container my-2">
+    <h1>Room List</h1>
+    <table border="1" class = "table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>
+                Room id
+            </th>
+            <th>
+                room status
+            </th>
+            <th>
+                number of beds
+            </th>
+            <th> price </th>
+            <th>Assigned to</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="rooms : ${listrooms}">
+            <td th:text="${rooms.roomid}"></td>
+            <td th:text="${rooms.roomstatus}"></td>
+            <td th:text="${rooms.noOfBeds}"></td>
+            <td th:text="${rooms.price}"></td>
+            <td th:text="${rooms.assignedto}"></td>
+            <td>
+                <a th:href="@{/admin/authenticate/showroomupdate/{roomid}(roomid=${rooms.roomid})}" class="btn btn-primary">Update</a>
+                <a th:href="@{/admin/authenticate/deleteroom/{roomid}(roomid=${rooms.roomid})}" class="btn btn-danger">Delete</a>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/admin/authenticate/goback}" class="btn btn-warning mt-4 mb-4">← Go Back</a>
+</div>
+</body>
+</html>
